@@ -26,13 +26,17 @@ void listenRequests(HttpServer server) async {
         handleDeleteRequest(request);
         break;
       default:
-        request.response
-          ..statusCode = HttpStatus.INTERNAL_SERVER_ERROR
-          ..writeln('Unhandle request method')
-          ..close();
+        unhandleRequest(request);
         break;
     }
   }
+}
+
+void unhandleRequest(HttpRequest request) {
+  request.response
+    ..statusCode = HttpStatus.INTERNAL_SERVER_ERROR
+    ..writeln('Unhandle request method')
+    ..close();
 }
 
 void handleGetRequest(HttpRequest request) async {
