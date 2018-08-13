@@ -41,6 +41,7 @@ void unhandleRequest(HttpRequest request) {
 
 void handleGetRequest(HttpRequest request) async {
   print(request.uri);
+  print(request.headers);
   request.response
     ..statusCode = HttpStatus.OK
     ..writeln('Request Success!!!')
@@ -49,6 +50,7 @@ void handleGetRequest(HttpRequest request) async {
 
 void handlePostRequest(HttpRequest request) async {
   print(request.uri);
+  print(request.headers);
   var decode = await request.transform(utf8.decoder);
   for (var item in await decode.toSet()) {
     print(item);
@@ -61,28 +63,31 @@ void handlePostRequest(HttpRequest request) async {
 
 void handleHeadRequest(HttpRequest request) {
   print(request.uri);
+  print(request.headers);
   request.response
     ..statusCode = HttpStatus.OK
-    ..writeln()
+    ..write('Request Success!!!')
     ..close();
 }
 
 void handlePutRequest(HttpRequest request) async {
   print(request.uri);
+  print(request.headers);
   var decode = await request.transform(utf8.decoder);
   for (var item in await decode.toSet()) {
     print(item);
   }
   request.response
     ..statusCode = HttpStatus.OK
-    ..writeln()
+    ..write('Request Success!!!')
     ..close();
 }
 
 void handleDeleteRequest(HttpRequest request) {
   print(request.uri);
+  print(request.headers);
   request.response
     ..statusCode = HttpStatus.OK
-    ..writeln()
+    ..write('Request Success!!!')
     ..close();
 }
